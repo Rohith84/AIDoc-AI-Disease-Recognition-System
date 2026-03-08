@@ -1,0 +1,73 @@
+# Virtual Environment
+venv/
+venv_gpu/
+env/
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Large Model Files (Over 100MB limit for GitHub)
+*.h5
+*.pkl
+*.pb
+
+# Uploads directory (user generated content)
+backend/uploads/
+uploads/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large datasets (training/testing images and data files)
+data/images/
+data/*.csv
+
+# Test and Cache
+.pytest_cache/
+.ipynb_checkpoints/
+*.log
+*.log.*
+
+# IDE configs
+.project
+.pydevproject
+.settings/
+
+# Backup files
+*.bak
+*.backup
+*~

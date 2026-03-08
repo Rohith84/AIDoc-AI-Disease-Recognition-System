@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker - AIDoc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <div class="brand-icon">
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="brand-title">AIDoc</h1>
+                    <p class="brand-subtitle">Predict. Prevent. Protect.</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/symptom-checker" class="nav-link active">Symptom Checker</a>
+                <a href="/image-analysis" class="nav-link">Image Analysis</a>
+                <a href="/" class="nav-link health-first">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 2c-2.5 0-4.5 2-4.5 4.5 0 3 4.5 7.5 4.5 7.5s4.5-4.5 4.5-7.5C12.5 4 10.5 2 8 2z" />
+                    </svg>
+                    Health First
+                </a>
+                <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back to Home -->
+    <div class="back-to-home">
+        <a href="/" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12 4l-8 6 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            Back to Home
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <section class="page-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
+                        <path
+                            d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+                    </svg>
+                </div>
+                <h1 class="page-title">Symptom-Based Disease Prediction</h1>
+                <p class="page-description">
+                    Select your symptoms from the list below. Our Random Forest algorithm will analyze them and
+                    predict the most likely disease.
+                </p>
+            </div>
+
+            <!-- Symptom Selection Card -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="20" fill="#17a2b8" opacity="0.1" />
+                            <circle cx="20" cy="20" r="10" stroke="#17a2b8" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="section-title">Select Your Symptoms</h2>
+                        <p class="section-subtitle">Click on the symptoms you are experiencing</p>
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="8" cy="8" r="6" stroke="#666" stroke-width="2" />
+                        <path d="M12 12l5 5" stroke="#666" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <input type="text" id="symptom-search" placeholder="Search symptoms..." class="search-input">
+                </div>
+
+                <div class="custom-symptom-input-section">
+                    <h3 class="custom-symptom-title">Don't see your symptom? Add it manually:</h3>
+                    <div class="custom-symptom-input-wrapper">
+                        <input type="text" id="custom-symptom-input"
+                            placeholder="Enter custom symptom (e.g., 'dry skin')" class="custom-symptom-textbox">
+                        <button onclick="addCustomSymptom()" class="add-custom-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 4v12M4 10h12" stroke="white" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                            Add
+                        </button>
+                    </div>
+                    <p class="custom-symptom-note">⚠️ Custom symptoms may not be in our dataset and could affect
+                        prediction accuracy.</p>
+                </div>
+
+                <div id="symptoms-grid" class="symptoms-grid">
+                    <!-- Symptoms will be loaded here dynamically -->
+                </div>
+
+                <div class="selected-symptoms-section">
+                    <div class="selected-symptoms-header">
+                        <h3 class="selected-title">Selected Symptoms</h3>
+                        <button id="clear-all-btn" class="clear-all-btn" onclick="clearAllSymptoms()"
+                            style="display:none;">✕ Clear All</button>
+                    </div>
+                    <div id="selected-symptoms" class="selected-symptoms">
+                        <p class="no-symptoms">No symptoms selected yet</p>
+                    </div>
+                </div>
+
+                <button class="analyze-btn" id="analyze-symptoms-btn" onclick="analyzeSymptoms()">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="8" cy="8" r="6" stroke="white" stroke-width="2" />
+                        <path d="M12 12l5 5" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    Analyze Symptoms
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeResults()">&times;</span>
+            <div id="results-body">
+                <!-- Results will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Analyzing your symptoms...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
